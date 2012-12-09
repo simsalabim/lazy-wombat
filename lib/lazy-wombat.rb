@@ -16,7 +16,7 @@ module LazyWombat
       if block_given?
         @package.workbook.add_worksheet do |spreadsheet|
           @spreadsheet = spreadsheet
-          @spreadsheet.name = options[:name] unless options[:name].nil? || options[:name].empty?
+          @spreadsheet.name = options[:name] unless options[:name].respond_to?(:empty?) ? options[:name].empty? : !options[:name]
           build_spreadsheet_styles
           instance_exec &block
         end
@@ -48,11 +48,11 @@ module LazyWombat
     end
 
     def cell value, options = {}
-      unless @row_options.nil? || @row_options.empty?
+      unless @row_options.respond_to?(:empty?) ? @row_options.empty? : !@row_options
         options = @row_options.merge(options){ |key, row_option, cell_option| Array.new << row_option << cell_option }
       end
       @cell = row.add_cell value.to_s, style: style_from_options(options)
-      unless options[:colspan].nil? || options[:colspan].empty?
+      unless options[:colspan].respond_to?(:empty?) ? options[:colspan].empty? : !options[:colspan]
         spreadsheet.merge_cells "#{pos[:x]}#{pos[:y]}:#{shift_x(pos[:x], 5)}#{pos[:y]}"
       end
     end

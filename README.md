@@ -1,6 +1,8 @@
-# Lazy::Wombat ![Build Status](https://travis-ci.org/simsalabim/lazy-wombat.png "Build Status")
+# LazyWombat ![Build Status](https://travis-ci.org/simsalabim/lazy-wombat.png "Build Status")
 
 A simple yet powerful DSL to generate Excel spreadsheets built on top of [axlsx](https://github.com/randym/axlsx) gem.
+
+![Wombat picture](http://img254.imageshack.us/img254/7837/commonwombathead.jpg)
 
 ## Why Lazy Wombat?
 Axlsx is awesome and quite complex in usage.
@@ -11,7 +13,7 @@ Now you can.
 
 Add this line to your application's Gemfile:
 
-    gem 'lazy-wombat'
+    gem 'lazy-wombat', '~> 0.0.2'
 
 And then execute:
 
@@ -45,7 +47,9 @@ LazyWombat::Xlsx.new do
   cell 'The Terminator'
 end.save 'my_laziness.xlsx'
 ```
-will create `my_laziness` spreadsheet looks like this: ![Generated spreadsheet](http://img525.imageshack.us/img525/7037/spreadsheet1.png)
+will create `my_laziness.xlsx` spreadsheet looks like this:
+
+![Generated spreadsheet](http://img525.imageshack.us/img525/7037/spreadsheet1.png)
 
 Since spreadsheet elements inheritance is alike `spreadsheet -> row -> cell`, you can arbitrary omit every unnecessary
 elder element of your spreadsheets.
@@ -65,18 +69,11 @@ LazyWombat::Xlsx.new do
     end
   end
 end.save 'my_laziness.xlsx'
-
-# or
-LazyWombat::Xlsx.new do
-  td 'Cyberdyne Systems'
-  td 'Model 101'
-  td 'The Terminator'
-end.save 'my_laziness.xlsx'
 ```
 
 ### Additional options: spreadsheet names, rows and cells styles
 By default spreadsheets are named as `Sheet 1`, `Sheet 2`, etc. It can be overwritten using `name` option.
-``ruby
+```ruby
 LazyWombat::Xlsx.new do
   spreadsheet name: 'My Laziness' do
     row style: :bold do
