@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec',    '~> 2.9'
   s.add_development_dependency 'roo'
   s.add_runtime_dependency     'axlsx'
+  s.add_runtime_dependency     'hash-deep-merge', '~> 0.1.1'
 end
